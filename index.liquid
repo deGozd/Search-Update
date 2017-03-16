@@ -1,0 +1,47 @@
+<!- Search Button -->
+<a id="search-mob" class="sf-icon-menu search-mob">
+  <i class="material-icons {% if template == 'index' %}whitefill{% endif %}">search</i>
+</a>
+
+<!-- Search Mob -->
+<div id="search-mob-container" class="hide-on-desktop">
+  <form method="get" action="/search">
+    <input type="text" placeholder="Search" class="search-mob-field" autocomplete="off" name="q" />
+    <button type="submit" class="search-mob-button" value="Search" />
+    <i class="material-icons">search</i>
+    </button>
+  </form>
+</div>
+
+<script>
+  
+  // Slide Function
+  $(document).ready(function(){ 
+    $('#search-mob').click(function(){
+      $('#search-mob-container').slideToggle();
+      closePopup();
+      closeMiniCart();
+    });
+    $('#menu-mob').click(function(){
+      $('#search-mob-container').slideUp();
+    });
+    $('.mini-cart-button').click(function(){
+      $('#search-mob-container').slideUp();
+    });
+  });
+
+  // If Index Do This
+  {% if template == 'index' %}
+    // White Font Until Scroll
+    $(document).scroll(function(){
+      var scroll = $(document).scrollTop();
+      if (scroll > 0) {
+        console.log('hello');
+        $('#search-mob i').removeClass('whitefill');
+      } else {
+        $('#search-mob i').addClass('whitefill');
+      }  
+    });
+  {% endif %}
+
+</script>
